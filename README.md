@@ -46,6 +46,7 @@ docs/            项目文档
 - 初始化 FastAPI 项目结构
 - 配置 SQLAlchemy、Pydantic v2 与基础环境变量
 - 提供健康检查接口
+- 增加统一响应结构、异常处理、日志配置和基础测试
 
 ### Phase 2: OpenAPI 资产管理
 
@@ -93,6 +94,18 @@ cp .env.example .env
 uvicorn app.main:app --reload
 ```
 
+初始化数据库：
+
+```bash
+python -m app.db.init_db
+```
+
+运行测试：
+
+```bash
+pytest
+```
+
 访问健康检查接口：
 
 ```bash
@@ -103,11 +116,17 @@ curl http://127.0.0.1:8000/health
 
 ```json
 {
-  "status": "ok",
-  "service": "API Sentinel AI"
+  "success": true,
+  "code": "OK",
+  "message": "Success",
+  "data": {
+    "status": "ok",
+    "service": "API Sentinel AI",
+    "version": "0.1.0"
+  }
 }
 ```
 
 ## 当前说明
 
-当前版本只包含项目骨架和基础健康检查接口，暂未实现用户认证、AI 调用或安全扫描能力。
+当前版本包含项目骨架、健康检查、统一响应、异常处理、日志配置、数据库初始化入口和基础测试，暂未实现用户认证、AI 调用或安全扫描能力。

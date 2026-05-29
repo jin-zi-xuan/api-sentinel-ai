@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     API_VERSION: str = "0.1.0"
     API_V1_PREFIX: str = "/api/v1"
     DATABASE_URL: str = "sqlite:///./api_sentinel_ai.db"
+    LOG_LEVEL: str = "INFO"
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
